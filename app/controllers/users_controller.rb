@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
   def new
+  	render :layout => false
   end
 
   def create
   	@user = User.create(user_params)
-  	puts @user
-  	puts user_params
     if @user.save
       session[:user_id] = @user.id
       redirect_to "/welcome/index"
