@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PaperCompany</title>
+    <title>Clipboard</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <nav class="navbar">
+    <span class="navbar-span">
+
+      <%if is_logged_in? %>
+        Current User:
+        <% @user = current_user %>
+        <%=" #{@user.name}"%>
+        <br>
+        <a href="/sessions/delete">Logout</a>
+      <%else%>
+        <h3><a href="/sessions/new"><button class="button-green">Login</button></a></h3>
+        <h3><a href="/users/new"><button class="button-green">Sign Up</button></a></h3>
+      <%end%>
+      </span>
+  </nav>
   </head>
 
   <body>

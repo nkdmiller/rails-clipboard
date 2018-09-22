@@ -12,4 +12,9 @@ class SessionsController < ApplicationController
     session[:user_id] = @user.id
     redirect_to "/welcome/index"
   end
+
+  def delete
+  	session.clear
+  	redirect_to "/welcome/index"
+  end
 end
