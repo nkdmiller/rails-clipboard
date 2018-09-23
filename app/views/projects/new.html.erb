@@ -3,15 +3,33 @@
   <%= f.text_field :name %><br>
  
   <%= f.fields_for :tasks do |task| %>
-    <%= task.label :role %>
-    <%= task.text_field :role %><br>
+  	<h2>Task 1</h2>
+    <%= task.label :Role %><br>
+    <%= task.text_field :role_1 %><br>
  
-    <%= task.label :description %>
-    <%= task.text_field :role %><br>
+    <%= task.label :Description %><br>
+    <%= task.text_area :description_1 %><br>
  
-    <%= task.label :number %>
-    <%= task.text_field :number %><br>
- 
+    <%= task.label :"Number of Positions for this Task" %><br>
+    <%= task.text_field :number_1 %><br>
+
+    <span id="extraTasks"></span>
+     <input type="button" value="Add Task" onclick="addTask()"/>
+ 	<script language='javascript' type='text/javascript'>
+ 		let count = 2;
+			function addTask()
+			{
+			document.getElementById('extraTasks').innerHTML+='<h2>Task '+count+'</h2><br>'
+			document.getElementById('extraTasks').innerHTML+='<label for="project_tasks_Role">Role</label>'
+			document.getElementById('extraTasks').innerHTML+='<br/><input type="text" name="project[tasks][role_'+count+']" id="project_tasks_role'+count+'"/><br/>';
+			document.getElementById('extraTasks').innerHTML+='<label for="project_tasks_Description">Description</label>'
+			document.getElementById('extraTasks').innerHTML+='<br/><textarea name="project[tasks][description_'+count+']" id="project_tasks_role'+count+'"/>';
+			document.getElementById('extraTasks').innerHTML+='<br/><label for="project_tasks_Number of Positions for this Task">Number of Positions for this Task</label><br/>'
+			document.getElementById('extraTasks').innerHTML+='<input type="text" name="project[tasks][number_'+count+']" id="project_tasks_number'+count+'"/><br/>';
+			     count += 1;
+			}
+	</script>
+
   <% end %>
  
   <%= f.submit %>
