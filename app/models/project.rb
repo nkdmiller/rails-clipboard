@@ -7,7 +7,7 @@ class Project < ApplicationRecord
 		params[:project][:tasks].each do |key, task|
 			count = task[:number].to_i
 			count.times do
-				@task = Task.create!(:project_id => self.id, :role => task[:role], :details => task[:details], :user_id => 1)
+				@task = Task.create!(:project_id => self.id, :role => task[:role], :details => task[:details], :user_id => task[:user_id])
 				@task.save
 			end
 		end

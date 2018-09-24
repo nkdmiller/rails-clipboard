@@ -12,7 +12,7 @@
  
     <%= task.label :"Number of Positions for this Task" %><br>
     <%= task.text_field :"[0][number]" %><br>
-    <%="<input type='hidden' id='userId' name='project[tasks][0][user_id]' value = '#{session[:user_id]}'>"%>
+    <input <%="type=hidden id=userId name=project[tasks][0][user_id] value = #{session[:user_id]}"%>>
     <span id="extraTask"></span>
      <input type="button" value="Add Task" onclick="addTask()"/>
  	<script language='javascript' type='text/javascript'>
@@ -27,7 +27,7 @@
 			document.getElementById('extraTask').innerHTML+='<br/><textarea name="project[tasks]['+hash_count+'][details]" id="project_tasks_description"/>';
 			document.getElementById('extraTask').innerHTML+='<br/><label for="project_tasks_Number of Positions for this Task">Number of Positions for this Task</label><br/>'
 			document.getElementById('extraTask').innerHTML+='<input type="text" name="project[tasks]['+hash_count+'][number]" id="project_tasks_number"/><br/>';
-			document.getElementById('extraTask').innerHTML+=<%="<input type='hidden' id='userId' name='project[tasks][0][user_id]' value = '#{session[:user_id]}'>"%>
+			document.getElementById('extraTask').innerHTML+='<input <%="type=hidden id=userId name=project[tasks][0][user_id] value = #{session[:user_id]}"%>>';
 			     task_count += 1;
 			     hash_count += 1;
 			}

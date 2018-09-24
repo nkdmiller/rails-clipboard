@@ -1,0 +1,11 @@
+<h1>Task Sign Up</h1>
+<h2><%=@project.name%></h2>
+<h2><%=@task.role%></h2>
+<h3>Task Details:</h3>
+<p><%=@task.details%></p>
+<%= form_tag('/tasks/register') do %>
+	<%= hidden_field_tag "project_id", @project.id %>
+	<%= hidden_field_tag "task_id", current_user.id %>
+	<%= hidden_field_tag "user_id", @user.id %>
+  <div><%= submit_tag 'Confirm' %></div>
+<% end -%>

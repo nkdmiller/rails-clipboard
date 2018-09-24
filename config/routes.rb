@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   get 'projects/edit'
 	root 'welcome#index'
   get 'welcome/index'
+  resources :projects, only: [:show] do
+  	resources :tasks, only: [:edit]
+  end
+  post 'tasks/register'
 end
