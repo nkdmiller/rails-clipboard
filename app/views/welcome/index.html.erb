@@ -3,3 +3,9 @@
 <h1>My Projects</h1>
 
 <h1>Current Projects</h1>
+<%Project.all.each do |proj|%>
+	<h3><%=proj.name%></h3>
+	<% proj.tasks.each do |task|%>
+		<h4><%=task.role%></h4>
+	<%end%>
+<%end%>

@@ -3,14 +3,14 @@ class ProjectsController < ApplicationController
   end
 
   def create
-
-  	puts params
-    if @user.save
-      session[:user_id] = @user.id
+  	@project = Project.create!(project_params)
+  	@project.create_project_tasks(params)
+    if @project.save
       redirect_to "/welcome/index"
     else
       redirect_to "/users/new"
     end
+
   end
 
   def show
@@ -23,9 +23,9 @@ class ProjectsController < ApplicationController
   end
 
   private
-  	def user_params
+  	def project_params
 
-    	params.require(:user).permit(:name)
+    	params.require(:project).permit(:name)
 
   	end
 end
