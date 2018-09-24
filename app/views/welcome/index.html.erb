@@ -7,5 +7,6 @@
 	<h3><%=proj.name%></h3>
 	<% proj.tasks.each do |task|%>
 		<h4><%=task.role%></h4>
+		<h3><a href="/task/edit"><button class="button-green">Pick Up Task</button></a></h3>
 	<%end%>
 <%end%>
