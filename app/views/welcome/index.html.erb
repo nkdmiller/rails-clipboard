@@ -9,6 +9,9 @@
 		<h4><%=task.role%></h4>
 		<%if !task.filled%>
 			<h3><a href='/projects/<%="#{proj.id}"%>/tasks/<%="#{task.id}"%>/edit'><button class='button-green'>Pick Up Task</button></a></h3>
+		<%elsif task.filled && task.user_id == current_user.id%>
+			<h3>You're on it!</h3>
+			<h3><a href='/projects/<%="#{proj.id}"%>/tasks/<%="#{task.id}"%>/edit'><button class='button-green'>Drop Task</button></a></h3>
 		<%end%>
 	<%end%>
 <%end%>

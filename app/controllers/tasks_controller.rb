@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   	@task = Task.find(params[:task_id])
   	@user = User.find(params[:user_id])
   	@task.user = @user
-  	@task.filled = true
+  	@task.filled = params[:filled]
   	@task.save
   	redirect_to "/welcome/index"
   end
