@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
     if session[:user_id].blank?
       redirect_to "/sessions/new"
     else
-    	@user = User.find(current_user.id)
+    	@user = User.find(session[:user_id])
     	@projects = @user.projects
     	@tasks = @user.tasks
       render :index

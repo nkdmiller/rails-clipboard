@@ -1,5 +1,9 @@
 <h1>My Tasks!</h1>
-
+	<%@tasks.each do |task|%>
+		<% if task.filled == true%>
+			<h3><%="#{task.role}"%></h3>
+		<%end%>
+	<%end%>
 <h1>My Projects</h1>
 
 <h1>Current Projects</h1>
