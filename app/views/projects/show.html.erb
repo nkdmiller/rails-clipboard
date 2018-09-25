@@ -1,2 +1,3 @@
 <h1><%=@project.name%></h1>
 <%= render partial: "projects/table", locals: {proj: @project} %>
+<h3><a href='/projects/<%="#{@project.id}"%>/tasks/new'><button class='button-green'>Add Task</button></a></h3>

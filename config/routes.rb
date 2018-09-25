@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 	root 'welcome#index'
   get 'welcome/index'
   resources :projects, only: [:show] do
-  	resources :tasks, only: [:edit]
+  	resources :tasks, only: [:edit, :new, :create]
   end
   post 'tasks/register'
 end
