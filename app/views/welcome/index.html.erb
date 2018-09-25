@@ -6,12 +6,12 @@
 	<%end%>
 <h1>My Projects</h1>
 	<%@projects.each do |proj|%>
-		<h3><%="#{proj.name}"%></h3>
+		<h3><a href='/projects/<%="#{proj.id}"%>'><button class='button-green'><%="#{proj.name}"%></button></a></h3>
 	<%end%>
 <h1>Current Projects</h1>
 <%Project.all.each do |proj|%>
 
-	<table style="width:20%">
+		<table style="width:20%">
 		<caption><%=proj.name%></caption>
 		<tr>
 			<th>Task</th>
