@@ -5,7 +5,9 @@
 		<%end%>
 	<%end%>
 <h1>My Projects</h1>
-
+	<%@projects.each do |proj|%>
+		<h3><%="#{proj.name}"%></h3>
+	<%end%>
 <h1>Current Projects</h1>
 <%Project.all.each do |proj|%>
 	<h3><%=proj.name%></h3>

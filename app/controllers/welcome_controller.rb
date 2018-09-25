@@ -4,7 +4,8 @@ class WelcomeController < ApplicationController
       redirect_to "/sessions/new"
     else
     	@user = User.find(session[:user_id])
-    	@projects = @user.projects
+    	@admin_tasks = Task.all.created(session[:user_id])
+    	@projects = @admin_tasks.map { |task| task.project}
     	@tasks = @user.tasks
       render :index
     end
