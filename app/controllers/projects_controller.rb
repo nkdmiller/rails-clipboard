@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def create
   	@project = Project.create!(project_params)
-  	@task = Task.create!(:project_id => @project.id, :user_id => session[:user_id], :admin => true)
+  	@task = Task.create!(:project_id => @project.id, :user_id => session[:user_id], :filled => true, :admin => true)
   	@project.create_project_tasks(params)
     if @project.save
       redirect_to "/welcome/index"
