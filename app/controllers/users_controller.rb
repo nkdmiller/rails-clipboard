@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	include ApplicationHelper
   def new
   	render :layout => false
   end
@@ -13,13 +14,23 @@ class UsersController < ApplicationController
     end
   end
   def edit
+  	@user = User.find(params[:id])
+	if access?(params[:id])
+		render :edit
+	else
+		redirect_to "/welcome/index"
+	end
   end
 
+  def update
+  	@user = User.find(params[:id])
+  	@user = User.update(user_params)
+  	redirect_to "/welcome/index"
   private
  
-  def user_params
+  def project_params
 
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:project).permit(:name, :email, :password, :password_confirmation)
 
   end
 end

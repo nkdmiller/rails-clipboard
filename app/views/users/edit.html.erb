@@ -1,2 +1,14 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h3>Edit Account</h3>
+
+<%= form_for @user do |f| %>
+	<label>Username:</label><br>
+	<%= f.text_field :name, :value => @user.name %> %><br>
+	<label>Email:</label><br>
+	<%= f.text_field :email, :value => @user.email %><br>
+	<label>Password:</label><br>
+	<%= f.password_field :password, :value => @user.password %><br>
+	<label>Password Confirmation</label><br>
+	<%= f.password_field :password_confirmation, :value => @user.password %><br>
+	<input type="hidden" name="id" value = "<%=@user.id%>">
+	  <%= f.submit %>
+<% end %>

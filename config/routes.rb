@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'users/new'
   post 'users/create'
   get 'users/edit'
+  patch 'users/:id', to: 'users#update'
   get 'projects/new'
   post 'projects/create'
   get 'projects/show'
