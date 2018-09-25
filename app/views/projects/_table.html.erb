@@ -1,0 +1,24 @@
+<table style="width:20%">
+	<caption><%=proj.name%></caption>
+	<tr>
+		<th>Task</th>
+		<th>User</th> 
+		<th>Action</th>
+	</tr>
+
+	<% proj.tasks.each do |task|%>
+		<tr>
+		    <td><%=task.role%></td>
+			<%if !task.filled%>
+				<td>Empty!</td>
+				<td><h3><a href='/projects/<%="#{proj.id}"%>/tasks/<%="#{task.id}"%>/edit'><button class='button-green'>Pick Up Task</button></a></h3></td>
+			<%elsif task.filled && task.user_id == current_user.id && task.admin == false%>
+				<td>You!</td>
+				<td><a href='/projects/<%="#{proj.id}"%>/tasks/<%="#{task.id}"%>/edit'><button class='button-green'>Drop Task</button></a></td>
+			<% elsif task.filled && task.user_id != current_user.id && task.admin == false%>
+				<td><%= find_user_name(task.user_id)%></td>
+				<td>N/A</td>
+			<%end%>
+		</tr>
+	<%end%>
+</table>
