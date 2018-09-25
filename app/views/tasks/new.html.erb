@@ -1,1 +1,14 @@
-NEW
+<%= form_for :task, url: '/projects/addtask' do |f| %>
+
+  	<h2>Task 1</h2>
+    <%= f.label :Role %><br>
+    <%= f.text_field :role %><br>
+ 
+    <%= f.label :Description %><br>
+    <%= f.text_area :details %><br>
+
+  <label for="project_tasks_Number of Positions for this Task">Number of positions for this task</label>
+   <input type="text" name="[task][number]" id="number">
+   <input type="hidden" id="projectId" name="[task][project_id]" value = <%="#{@project.id}"%>>
+  <%= f.submit %>
+<% end %>

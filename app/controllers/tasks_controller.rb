@@ -12,4 +12,19 @@ class TasksController < ApplicationController
   	@task.save
   	redirect_to "/welcome/index"
   end
+  def new
+  	@project = Project.find(params[:project_id])
+  end
+  def create
+  	@project.create_project_tasks(params)
+    if @project.save
+      redirect_to "/welcome/index"
+    else
+      redirect_to "/projects/<%='#{@project.id}%>"
+    end
+  end
+  def destroy
+  	Task.find(params[:id]).destroy
+  	redirect_to "/projects/<%='#{@project.id}%>"
+  end
 end

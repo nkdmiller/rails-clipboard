@@ -3,6 +3,10 @@ class Project < ApplicationRecord
 	has_many :users, through: :tasks
 	accepts_nested_attributes_for :tasks
 
+	def add_task(params, proj)
+		@task = Task.create!(:project_id => params[:project_id], :role => params[:role], :details => params[:details], :user_id => proj.users.first.id, :filled => false, :admin => false)
+		@task.save
+	end
 	def create_project_tasks(params)
 		params[:project][:tasks].each do |key, task|
 			count = task[:number].to_i

@@ -9,9 +9,15 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to "/welcome/index"
     else
-      redirect_to "/users/new"
+      redirect_to "/projects/new"
     end
 
+  end
+
+  def addtask
+  	@project = Project.find(params[:task][:project_id])
+  	@project.add_task(task_params, @project)
+  	redirect_to "/projects/#{@project.id}"
   end
 
   def show
@@ -28,6 +34,12 @@ class ProjectsController < ApplicationController
   	def project_params
 
     	params.require(:project).permit(:name)
+
+  	end
+
+  	def task_params
+
+  		params.require(:task).permit(:role, :details, :number, :project_id)
 
   	end
 end

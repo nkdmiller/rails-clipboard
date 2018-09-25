@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'sessions/delete'
   resources :users, only: [:new, :create, :edit, :update]
   resources :projects, only:[:new, :create, :show, :index, :edit]
+  post 'projects/addtask'
   # get 'projects/new'
   # post 'projects/create'
   # get 'projects/show'
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
 	root 'welcome#index'
   get 'welcome/index'
   resources :projects, only: [:show] do
-  	resources :tasks, only: [:edit, :new, :create]
+  	resources :tasks, only: [:edit, :new, :create, :destroy]
   end
   post 'tasks/register'
 end
