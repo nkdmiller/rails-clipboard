@@ -27,17 +27,17 @@ class UsersController < ApplicationController
 
   def update
 	@user = User.find(params[:id])
-  	if @user.valid?
-  		if @user.authenticate(params[:user][:old_password])
-		  	@user.update(user_params)
+  	if @user.authenticate(params[:user][:old_password])
+  		@user.update(user_params)
+  		if @user.valid?
 		  	@user.save
 		  	redirect_to "/welcome/index"
 		else
-			flash.now[:notice] = "Old password incorrect. Please try again."
+			flash.now[:notice] = "Unable to update account. Please fix errors below and try again."
 			render :edit	
 		end
 	else
-		flash.now[:notice] = "Unable to update account. Please fix errors below and try again."
+		flash.now[:notice] = "Old password incorrect. Please try again."
 		render :edit
 	end
   end
