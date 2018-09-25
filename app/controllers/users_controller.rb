@@ -29,6 +29,9 @@ class UsersController < ApplicationController
 	  	@user.update(user_params)
 	  	@user.save
 	  	redirect_to "/welcome/index"
+	else
+		flash[:notice] = "Please enter your old password to change information."
+		render :edit
 	end
   end
 
