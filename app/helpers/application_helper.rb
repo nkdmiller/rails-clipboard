@@ -4,10 +4,10 @@ module ApplicationHelper
 	end
    def current_user
    	return unless session[:user_id]
-   	@user ||= User.find(session[:user_id])
+   	@logged_in_user ||= User.find(session[:user_id])
    end
    def access?(id)
-   	if current_user.id == id
+   	if current_user.id == id.to_i
    		return true
    	else
    		return false

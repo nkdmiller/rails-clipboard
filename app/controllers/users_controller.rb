@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
   def edit
   	@user = User.find(params[:id])
+
 	if access?(params[:id])
 		render :edit
 	else
@@ -23,14 +24,19 @@ class UsersController < ApplicationController
   end
 
   def update
-  	@user = User.find(params[:id])
-  	@user = User.update(user_params)
-  	redirect_to "/welcome/index"
+	@user = User.find(params[:id])
+  	if @user.authenticate(params[:user][:old_password])
+	  	@user.update(user_params)
+	  	@user.save
+	  	redirect_to "/welcome/index"
+	end
+  end
+
   private
  
-  def project_params
+  def user_params
 
-    params.require(:project).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
 
   end
 end
