@@ -4,7 +4,7 @@
 		<th>Task</th>
 		<th>User</th> 
 		<th>Action</th>
-		<%if delete_privelage?%>
+		<%if delete_privelage%>
 			<th>Delete Task?</th>
 		<%end%>
 	</tr>
@@ -22,8 +22,8 @@
 				<td><%= find_user_name(task.user_id)%></td>
 				<td>N/A</td>
 			<%end%>
-			<%if delete_privelage?%>
-				<th><a data-confirm="You sure you want to delete this task?" rel="nofollow" data-method="delete" href="/projects/<%=proj.id%>/tasks/<%="#{task.id}"%>/delete"><button class='button-red'>Delete</button></a></th>
+			<%if delete_privelage%>
+				<th><a data-confirm="You sure you want to delete this task?" rel="nofollow" data-method="delete" href="/projects/<%=proj.id%>/tasks/<%="#{task.id}"%>"><button class='button-red'>Delete</button></a></th>
 			<%end%>			
 		</tr>
 	<%end%>

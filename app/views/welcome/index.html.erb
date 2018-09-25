@@ -10,5 +10,5 @@
 	<%end%>
 <h1>Current Projects</h1>
 <%Project.all.each do |proj|%>
-	<%= render partial: "projects/table", locals: {proj: proj,, delete_privelage: false} %>
+	<%= render partial: "projects/table", locals: {proj: proj, delete_privelage: false} %>
 <%end%>

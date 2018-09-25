@@ -25,6 +25,6 @@ class TasksController < ApplicationController
   end
   def destroy
   	Task.find(params[:id]).destroy
-  	redirect_to "/projects/<%='#{@project.id}%>"
+  	redirect_to "/projects/#{params[:project_id]}"
   end
 end
