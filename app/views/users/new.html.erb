@@ -1,13 +1,16 @@
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 <h3>Sign Up for Clipboard!</h3>
 
-<%= form_for :user, url: '/users/create'  do |f| %>
-<label>Username:</label><br>
-<%= f.text_field :name %><br>
-<label>Email:</label><br>
-<%= f.text_field :email %><br>
-<label>Password:</label><br>
-<%= f.password_field :password %><br>
-<label>Password Confirmation</label><br>
-<%= f.password_field :password_confirmation %><br>
-  <%= f.submit %>
+<%= form_for :user, url: '/users'  do |f| %>
+	<label>Username:</label><br>
+	<%= f.text_field :name %><br>
+	<label>Email:</label><br>
+	<%= f.text_field :email %><br>
+	<label>Password:</label><br>
+	<%= f.password_field :password %><br>
+	<label>Password Confirmation</label><br>
+	<%= f.password_field :password_confirmation %><br>
+	  <%= f.submit %>
 <% end %>

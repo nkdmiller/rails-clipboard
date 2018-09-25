@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to "/welcome/index"
     else
+    	flash[:notice] = "Information Invalid."	
       redirect_to "/users/new"
     end
   end
