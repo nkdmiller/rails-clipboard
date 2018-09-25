@@ -1,3 +1,12 @@
 <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
+    <div class="notice"><%= flash.now[:notice] %></div>
+<% end %>
+<% if obj.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% obj.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
 <% end %>

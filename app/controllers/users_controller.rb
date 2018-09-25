@@ -1,17 +1,18 @@
 class UsersController < ApplicationController
 	include ApplicationHelper
   def new
+  	@user = User.new
   	render :layout => false
   end
 
   def create
   	@user = User.create(user_params)
-    if @user.save
+    if @user.valid?
       session[:user_id] = @user.id
       redirect_to "/welcome/index"
     else
-    	flash[:notice] = "Information Invalid."	
-      redirect_to "/users/new"
+    	flash.now[:notice] = "Unable to create account. Please fix errors below and try again."
+    	render :new, :layout => false
     end
   end
   def edit
@@ -26,12 +27,17 @@ class UsersController < ApplicationController
 
   def update
 	@user = User.find(params[:id])
-  	if @user.authenticate(params[:user][:old_password])
-	  	@user.update(user_params)
-	  	@user.save
-	  	redirect_to "/welcome/index"
+  	if @user.valid?
+  		if @user.authenticate(params[:user][:old_password])
+		  	@user.update(user_params)
+		  	@user.save
+		  	redirect_to "/welcome/index"
+		else
+			flash.now[:notice] = "Old password incorrect. Please try again."
+			render :edit	
+		end
 	else
-		flash[:notice] = "Please enter your old password to change information."
+		flash.now[:notice] = "Unable to update account. Please fix errors below and try again."
 		render :edit
 	end
   end

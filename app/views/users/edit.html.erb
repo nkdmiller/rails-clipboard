@@ -1,4 +1,4 @@
-<%= render partial: "layouts/flash"%>
+<%= render partial: "layouts/flash", locals: {obj: @user}%>
 <h3>Edit Account</h3>
 
 <%= form_for @user do |f| %>
