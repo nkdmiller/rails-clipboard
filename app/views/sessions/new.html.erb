@@ -3,10 +3,12 @@
 		<%= render partial: "layouts/flash", locals: {obj: @user}%>
 		<%= form_for :user, url: '/sessions/create' do |f| %>
 		  Username: <%= f.text_field :name %>
+		  <br>
 		  Password: <%= f.password_field :password %>
 		  <%= f.submit "Submit" %>
 		<% end %>
 		<br>
 		<a href="/users/new">Signup</a>
+		<a href='/auth/facebook'>Login with Facebook</a>
 	</div>
 </div>

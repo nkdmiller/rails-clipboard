@@ -2,7 +2,7 @@ class Project < ApplicationRecord
 	has_many :tasks
 	has_many :users, through: :tasks
 	accepts_nested_attributes_for :tasks
-
+	validates :name, length: { minimum: 2 }
 	def add_task(params, proj)
 		@task = Task.create!(:project_id => params[:project_id], :role => params[:role], :details => params[:details], :user_id => proj.users.first.id, :filled => false, :admin => false)
 		@task.save

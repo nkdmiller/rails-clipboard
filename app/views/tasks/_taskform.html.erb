@@ -2,16 +2,17 @@
   <%= f.fields_for :tasks do |task| %>
   	<h2>Task 1</h2>
     <%= task.label :Role %><br>
-    <%= task.text_field :"[0][role]" %><br>
+    <%= task.text_field :"[0][role]", :required => true %><br>
  
     <%= task.label :Description %><br>
-    <%= task.text_area :"[0][details]" %><br>
+    <%= task.text_area :"[0][details]", :required => true %><br>
  
     <%= task.label :"Number of Positions for this Task" %><br>
     <%= task.text_field :"[0][number]", type: 'number', min: '1', value: '1' %><br>
     <input <%="type=hidden id=userId name=project[tasks][0][user_id] value = #{session[:user_id]}"%>>
     <span id="extraTask"></span>
-     <input type="button" value="Add Task" onclick="addTask()"/>
+    <br>
+     <input class ="button-green" type="button" value="Add Task" onclick="addTask()"/>
  	<script language='javascript' type='text/javascript'>
  		let task_count = 2;
  		let hash_count = 1;
@@ -19,12 +20,12 @@
 			{
 			document.getElementById('extraTask').innerHTML+='<h2>Task '+task_count+'</h2><br>'
 			document.getElementById('extraTask').innerHTML+='<label for="project_tasks_Role">Role</label>'
-			document.getElementById('extraTask').innerHTML+='<br/><input type="text" name="project[tasks]['+hash_count+'][role]" id="project_tasks_role"/><br/>';
+			document.getElementById('extraTask').innerHTML+='<br/><input type="text" name="project[tasks]['+hash_count+'][role]" required id="project_tasks_role"/><br/>';
 			document.getElementById('extraTask').innerHTML+='<label for="project_tasks_Description">Description</label>'
-			document.getElementById('extraTask').innerHTML+='<br/><textarea name="project[tasks]['+hash_count+'][details]" id="project_tasks_description"/>';
+			document.getElementById('extraTask').innerHTML+='<br/><textarea name="project[tasks]['+hash_count+'][details]" required id="project_tasks_description"/>';
 			document.getElementById('extraTask').innerHTML+='<br/><label for="project_tasks_Number of Positions for this Task">Number of Positions for this Task</label><br/>'
-			document.getElementById('extraTask').innerHTML+='<input type="number" increment="1" name="project[tasks]['+hash_count+'][number]" id="project_tasks_number"/><br/>';
-			document.getElementById('extraTask').innerHTML+='<input <%="type=hidden id=userId name=project[tasks][0][user_id] value = #{session[:user_id]}"%>>';
+			document.getElementById('extraTask').innerHTML+='<input required type="number" min="1" value="1" name="project[tasks]['+hash_count+'][number]" id="project_tasks_number"/><br/>';
+			document.getElementById('extraTask').innerHTML+='<input type=hidden id=userId name=project[tasks]['+hash_count+'][user_id] value = <%="#{session[:user_id]}"%>>';
 			     task_count += 1;
 			     hash_count += 1;
 			}

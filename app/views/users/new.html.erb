@@ -1,14 +1,16 @@
-<%= render partial: "layouts/flash", locals: {obj: @user}%>
-<h3>Sign Up for Clipboard!</h3>
+<div class="home-box">
+	<%= render partial: "layouts/flash", locals: {obj: @user}%>
+	<h3>Sign Up for Clipboard!</h3>
 
-<%= form_for @user do |f| %>
-	<label>Username:</label><br>
-	<%= f.text_field :name %><br>
-	<label>Email:</label><br>
-	<%= f.text_field :email %><br>
-	<label>Password:</label><br>
-	<%= f.password_field :password %><br>
-	<label>Password Confirmation</label><br>
-	<%= f.password_field :password_confirmation %><br>
-	  <%= f.submit %>
-<% end %>
+	<%= form_for @user do |f| %>
+		<label>Username:</label><br>
+		<%= f.text_field :name %><br>
+		<label>Email:</label><br>
+		<%= f.text_field :email %><br>
+		<label>Password:</label><br>
+		<%= f.password_field :password %><br>
+		<label>Password Confirmation</label><br>
+		<%= f.password_field :password_confirmation %><br>
+		  <%= f.submit %>
+	<% end %>
+</div>

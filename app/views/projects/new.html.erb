@@ -1,7 +1,8 @@
 <div class="home-box">
+	<h2>New Project</h2>
 	<%= form_for :project, url: '/projects' do |f| %>
 	  <%= f.label :name %>
-	  <%= f.text_field :name %><br>
+	  <%= f.text_field :name, :required => true %><br>
 	 
 		<%= render partial: "tasks/taskform", locals: {f: f} %>
 	 
