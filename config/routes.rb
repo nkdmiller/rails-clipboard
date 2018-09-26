@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'sessions/create'
   get 'sessions/delete'
   resources :users, only: [:new, :create, :edit, :update]
-  resources :projects, only:[:new, :create, :show, :index, :edit]
+  resources :projects, only:[:new, :create, :show, :index, :edit, :destroy]
   post 'projects/addtask'
   # get 'projects/new'
   # post 'projects/create'

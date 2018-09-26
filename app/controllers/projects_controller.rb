@@ -30,6 +30,14 @@ class ProjectsController < ApplicationController
   def edit
   end
 
+  def destroy
+  	Project.find(params[:id]).tasks.each do |task|
+  		task.destroy
+  	end
+  	Project.find(params[:id]).destroy
+  	redirect_to "/welcome/index"
+  end
+
   private
   	def project_params
 
