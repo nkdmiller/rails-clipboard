@@ -9,7 +9,7 @@
 	    <%= f.text_area :details, :required => true %><br>
 
 	  <label for="project_tasks_Number of Positions for this Task">Number of positions for this task</label>
-	   <input type="text" name="[task][number]" id="number">
+	   <input required type="number" min="1" value="1" name="[task][number]" id="number">
 	   <input type="hidden" id="projectId" name="[task][project_id]" value = <%="#{@project.id}"%>>
 	  <%= f.submit %>
 	<% end %>
