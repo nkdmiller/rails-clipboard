@@ -1,8 +1,13 @@
 
-<%= form_for :user, url: '/sessions/create' do |f| %>
-  Username: <%= f.text_field :name %>
-  Password: <%= f.password_field :password %>
-  <%= f.submit "Submit" %>
-<% end %>
-<br>
-<a href="/users/new">Signup</a>
+<div class="form-background">
+	<div class="wrapper">
+		<%= render partial: "layouts/flash", locals: {obj: @user}%>
+		<%= form_for :user, url: '/sessions/create' do |f| %>
+		  Username: <%= f.text_field :name %>
+		  Password: <%= f.password_field :password %>
+		  <%= f.submit "Submit" %>
+		<% end %>
+		<br>
+		<a href="/users/new">Signup</a>
+	</div>
+</div>

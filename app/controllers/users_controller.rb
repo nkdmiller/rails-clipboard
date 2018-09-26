@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 	include ApplicationHelper
   def new
   	@user = User.new
-  	render :layout => false
   end
 
   def create
@@ -12,7 +11,7 @@ class UsersController < ApplicationController
       redirect_to "/welcome/index"
     else
     	flash.now[:notice] = "Unable to create account. Please fix errors below and try again."
-    	render :new, :layout => false
+    	render :new
     end
   end
   def edit

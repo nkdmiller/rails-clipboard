@@ -1,3 +1,93 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+legend {
+	font-size: 2.5em;
+}
+
+p {
+	font-size: 1.75em;
+	word-wrap: break-word;
+}
+img {
+    width: 100%;
+    height: auto;
+}
+body {
+	 background-color: gray;
+	 font-family: 'Playfair Display', serif;
+}
+input[type=submit]{
+	background-color: silver; 
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+input[type=submit]:hover{
+    background-color: #4CAF50;
+    color: white;
+ }
+.wrapper {
+  margin: 0 auto;
+  background-image: url("/images/light-wood.jpg");
+  padding: 25px;
+  width: 90%;
+  border-style: groove;
+  border: 5px;
+}
+.form-background {
+	padding: 25px;
+	border: 5px;
+	background-color: silver;
+	border-style: groove;
+}
+.transaction-box{
+	padding: 10px;
+	border: 5px;
+	background-color: silver;
+	border-style: groove;
+}
+.art-box{
+	padding: 10px;
+	border: 5px;
+	background-color: silver;
+	border-style: groove;
+	height: 750px;
+}
+nav{
+	background-color: silver;
+	padding-left: 50px;
+	font-size: 1.5em;
+}
+.centered{
+	text-align: center;
+	font-family: 'Playfair Display', serif;
+}
+.titled{
+	font-size: 4.5em;
+}
+.button-green{
+	background-color: silver; 
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+.button-green:hover{
+    background-color: #4CAF50;
+    color: white;
+}
+.button-red {
+    background-color: silver; 
+    color: black; 
+    border: 2px solid #f44336;
+}
+.button-red:hover {
+    background-color: #f44336;
+    color: white;
+}
+.form-background {
+	margin: 0 auto;
+	background-color: silver;
+	width: 75%;
+	border-style: groove;
+  	border: 5px;
+  	font-family: 'Playfair Display', serif;
+}

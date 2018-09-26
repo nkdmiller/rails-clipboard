@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Clipboard</title>
     <%= csrf_meta_tags %>
@@ -7,9 +8,6 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% if flash[:notice] %>
-      <div class="notice"><%= flash[:notice] %></div>
-    <% end %>
     <nav class="navbar">
     <span class="navbar-span">
 
@@ -32,6 +30,8 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class = "wrapper">
+      <%= yield %>
+    </div>
   </body>
 </html>

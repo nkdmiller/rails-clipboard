@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
   def new
-
     if session[:user_id].blank?
-      render :layout => false
+    	@user = User.new
     else
       redirect_to "/welcome/index"
     end
@@ -11,7 +10,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(name: params[:user][:name])
     if @user.nil? || !@user.authenticate(params[:user][:password])
     	flash.now[:notice] = "Username and password not recognized."
-    	redirect_to "/sessions/new"
+    	render :new
     else
 	    session[:user_id] = @user.id
 	    redirect_to "/welcome/index"

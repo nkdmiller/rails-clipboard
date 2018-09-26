@@ -1,4 +1,5 @@
-<% if flash[:notice] %>
+
+<% if flash.now[:notice] %>
     <div class="notice"><%= flash.now[:notice] %></div>
 <% end %>
 <% if obj.errors.any? %>
