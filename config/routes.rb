@@ -7,11 +7,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update]
   resources :projects, only:[:new, :create, :show, :index, :edit, :destroy]
   post 'projects/addtask'
-  # get 'projects/new'
-  # post 'projects/create'
-  # get 'projects/show'
-  # get 'projects/index'
-  # get 'projects/edit'
 	root 'welcome#index'
   get 'welcome/index'
   resources :projects, only: [:show] do
