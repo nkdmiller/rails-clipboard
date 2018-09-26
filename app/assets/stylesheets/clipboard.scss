@@ -9,12 +9,9 @@ p {
 	font-size: 1.75em;
 	word-wrap: break-word;
 }
-img {
-    width: 100%;
-    height: auto;
-}
+
 body {
-	 background-color: gray;
+	 background-image: url(background.jpeg);
 	 font-family: 'Playfair Display', serif;
 }
 input[type=submit]{
@@ -28,9 +25,8 @@ input[type=submit]:hover{
  }
 .wrapper {
   margin: 0 auto;
-  background-image: url("/images/light-wood.jpg");
   padding: 25px;
-  width: 90%;
+  width: 60%;
   border-style: groove;
   border: 5px;
 }
@@ -40,21 +36,15 @@ input[type=submit]:hover{
 	background-color: silver;
 	border-style: groove;
 }
-.transaction-box{
+.home-box{
 	padding: 10px;
 	border: 5px;
 	background-color: silver;
 	border-style: groove;
-}
-.art-box{
-	padding: 10px;
-	border: 5px;
-	background-color: silver;
-	border-style: groove;
-	height: 750px;
 }
 nav{
-	background-color: silver;
+	background-image: linear-gradient(to right, gray , DarkSlateGray);
+	border-style: outset;
 	padding-left: 50px;
 	font-size: 1.5em;
 }
@@ -85,9 +75,13 @@ nav{
 }
 .form-background {
 	margin: 0 auto;
-	background-color: silver;
 	width: 75%;
 	border-style: groove;
   	border: 5px;
   	font-family: 'Playfair Display', serif;
+  	font-size: 1.5em;
+}
+.notice {
+	color: red;
+	font-size: .8em;
 }

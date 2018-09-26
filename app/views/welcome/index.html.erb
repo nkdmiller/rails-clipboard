@@ -1,14 +1,20 @@
-<h1>My Tasks!</h1>
-	<%@tasks.each do |task|%>
-		<% if task.filled == true%>
-			<h3><%="#{task.role}"%></h3>
+<div class="home-box">
+	<h1>My Tasks!</h1>
+		<%@tasks.each do |task|%>
+			<% if task.filled == true%>
+				<h3><%="#{task.role}"%></h3>
+			<%end%>
 		<%end%>
-	<%end%>
-<h1>My Projects</h1>
-	<%@projects.each do |proj|%>
-		<h3><a href='/projects/<%="#{proj.id}"%>'><button class='button-green'><%="#{proj.name}"%></button></a></h3>
-	<%end%>
-<h1>Current Projects</h1>
-<%Project.all.each do |proj|%>
-	<%= render partial: "projects/table", locals: {proj: proj, delete_privelage: false} %>
-<%end%>
+</div>
+<div class="home-box">
+	<h1>My Projects</h1>
+		<%@projects.each do |proj|%>
+			<h3><a href='/projects/<%="#{proj.id}"%>'><button class='button-green'><%="#{proj.name}"%></button></a></h3>
+		<%end%>
+</div>
+<div class="home-box">
+	<h1>Current Projects</h1>
+		<%Project.all.each do |proj|%>
+			<%= render partial: "projects/table", locals: {proj: proj, delete_privelage: false} %>
+		<%end%>
+</div>
