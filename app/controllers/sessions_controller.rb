@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     	flash.now[:notice] = "Username and password not recognized."
     	render :new
     else
-	    session[:user_id] = @user.id
+	    log_in(@user)
 	    redirect_to "/welcome/index"
 	end
   end
