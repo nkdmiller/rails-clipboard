@@ -20,6 +20,8 @@ class SessionsController < ApplicationController
   def creategithub
     @user = User.find_or_create_by(uid: auth['uid']) do |u|
       u.name = auth['info']['name']
+      u.password = SecureRandom.base64(10)
+      u.email = "github@login"
     end
     session[:user_id] = @user.id
  
