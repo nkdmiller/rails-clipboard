@@ -30,7 +30,7 @@ gem 'thin'
 gem 'dotenv-rails'
 
 gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'omniauth-github'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

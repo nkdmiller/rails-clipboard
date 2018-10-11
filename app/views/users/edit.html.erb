@@ -1,17 +1,19 @@
-<%= render partial: "layouts/flash", locals: {obj: @user}%>
-<h3>Edit Account</h3>
+<div class="home-box">
+	<%= render partial: "layouts/flash", locals: {obj: @user}%>
+	<h3>Edit Account</h3>
 
-<%= form_for @user do |f| %>
-	<label>Username:</label><br>
-	<%= f.text_field :name, :value => @user.name %><br>
-	<label>Email:</label><br>
-	<%= f.text_field :email, :value => @user.email %><br>
-	<label>New Password:</label><br>
-	<%= f.password_field :password %><br>
-	<label>New Password Confirmation</label><br>
-	<%= f.password_field :password_confirmation%><br>
-	<label>Old Password Confirmation</label><br>
-	<%= f.password_field :old_password%><br>	
-	<input type="hidden" name="id" value = "<%=@user.id%>">
-	  <%= f.submit %>
-<% end %>
+	<%= form_for @user do |f| %>
+		<label>Username:</label><br>
+		<%= f.text_field :name, :value => @user.name %><br>
+		<label>Email:</label><br>
+		<%= f.text_field :email, :value => @user.email %><br>
+		<label>New Password:</label><br>
+		<%= f.password_field :password %><br>
+		<label>New Password Confirmation</label><br>
+		<%= f.password_field :password_confirmation%><br>
+		<label>Old Password Confirmation</label><br>
+		<%= f.password_field :old_password%><br>	
+		<input type="hidden" name="id" value = "<%=@user.id%>">
+		  <%= f.submit %>
+	<% end %>
+</div>

@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
     if session[:user_id].blank?
       redirect_to "/sessions/new"
     else
-    	@user = User.find(session[:user_id])
+    	@user = User.find(session[:user_id]) #Implement current_user 
     	@admin_tasks = Task.all.created(session[:user_id])
     	@projects = @admin_tasks.map { |task| task.project}
     	@tasks = @user.tasks

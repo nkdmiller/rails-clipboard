@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
   post 'sessions/create'
-  get '/auth/facebook/callback' => 'sessions#createfb'
+  get 'auth/github/callback' => 'sessions#creategithub'
   get 'sessions/delete'
   resources :users, only: [:new, :create, :edit, :update]
   resources :projects, only:[:new, :create, :show, :index, :edit, :destroy]
