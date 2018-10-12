@@ -1,12 +1,12 @@
 module ApplicationHelper
 	def is_logged_in?
-	    !!current_user
+	    !!session[:user_id]
 	end
    def log_in(user)
       session[:user_id] = user.id
    end
-   def current_user(session)
-   	# return unless session[:user_id]
+   def current_user
+   	return unless is_logged_in?
    	@logged_in_user ||= User.find(session[:user_id])
    end
    def access?(id)

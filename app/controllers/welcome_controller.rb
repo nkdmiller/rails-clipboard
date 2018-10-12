@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    if session[:user_id].blank?
+    if !is_logged_in?
       redirect_to "/sessions/new"
     else
     	@user = User.find(session[:user_id]) #Implement current_user 
