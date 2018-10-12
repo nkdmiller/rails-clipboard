@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.create(user_params)
     if @user.valid?
-      session[:user_id] = @user.id
+      log_in(@user)
       redirect_to "/welcome/index"
     else
     	flash.now[:notice] = "Unable to create account. Please fix errors below and try again."
