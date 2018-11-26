@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'sessions/new'
+  get 'tasks/pickedup'
   post 'sessions/create'
   get 'auth/github/callback' => 'sessions#creategithub'
   get 'sessions/delete'

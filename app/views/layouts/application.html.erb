@@ -7,7 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
     <nav class="navbar">
     <span class="navbar-span">
 
@@ -27,6 +27,7 @@
       <%end%>
       </span>
   </nav>
+
   </head>
 
   <body>

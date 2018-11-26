@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+
   def new
   end
 
@@ -22,6 +23,11 @@ class ProjectsController < ApplicationController
 
   def show
   	@project = Project.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @project.to_json(only: [:id, :name],
+        include: :tasks )}
+    end
   end
 
   def index

@@ -1,6 +1,15 @@
+
 <div class="home-box">
+	<button class="button-green" id="ne">Next Project</button>
 	<h1><%=@project.name%></h1>
-	<%= render partial: "projects/table", locals: {proj: @project, delete_privelage: true} %>
+	<p id="test">hi</p>
+	<%= render partial: "projects/table", locals: {delete_privelage: true} %>
 	<h3><a href='/projects/<%="#{@project.id}"%>/tasks/new'><button class='button-green'>Add Task</button></a></h3><br>
 	<h3><a data-confirm="You sure you want to delete this project?" rel="nofollow" data-method="delete" href='/projects/<%="#{@project.id}"%>'><button class='button-red'>Delete Project</button></a></h3>
 </div>
+
+<script>
+	function loadTasks() {
+
+	}
+</script>

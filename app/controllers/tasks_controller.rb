@@ -27,4 +27,9 @@ class TasksController < ApplicationController
   	Task.find(params[:id]).destroy
   	redirect_to "/projects/#{params[:project_id]}"
   end
+
+  def pickedup
+    @tasks = Task.picked_up
+    render :pickedup
+  end
 end
