@@ -11,8 +11,11 @@
 <p id="loc">hi</p>
 <button id='load-tasks' onclick="loadTasks()">Show Tasks</button>
 <p val=[] id="x"></p>
+
+
 <script>
 	function loadTasks() {
+		$("#load-tasks").hide()
 		let results = []
 		$("#headers").show()
 		var arr = window.location.toString().split('/')
@@ -23,11 +26,17 @@
 			})
 			var i = 0
 			for (i = 0; i < results.length; i++){
-				if (results[i]["admin"] != true){
+				if (results[i]["role"] != true){
 					$("#task-table").append("<%= j render partial: 'projects/task' %>");
 					console.log(results[i])
 					$(".taskName").last().text(results[i]["role"])
 				}
+				$.get( "/users/" + results[i]["user_id"] + ".json", function( data ) {
+					console.log(data)	
+				})
+				$.get("/users/getcurrentuser", function( data ) {
+					console.log(data)	
+				})
 			}
 		});		
 	}

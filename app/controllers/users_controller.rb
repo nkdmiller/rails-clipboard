@@ -3,7 +3,20 @@ class UsersController < ApplicationController
   def new
   	@user = User.new
   end
-
+  def getcurrentuser
+    @user = current_user
+    respond_to do |format|
+      
+      format.json { render json: @user.to_json(only: [:id, :name] )}
+    end
+  end
+  def show
+    @user = User.find(params[:id])
+    respond_to do |format|
+      
+      format.json { render json: @user.to_json(only: [:id, :name] )}
+    end
+  end
   def create
   	@user = User.create(user_params)
     if @user.valid?
