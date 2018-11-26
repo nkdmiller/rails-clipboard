@@ -19,11 +19,15 @@
 		var project_id = arr[arr.length - 1]
 		$.get( "/projects/" + project_id + ".json", function( data ) {
 			data["tasks"].forEach(function(el) {
-			  results.push(JSON.stringify(el))
+			  results.push(el)
 			})
 			var i = 0
 			for (i = 0; i < results.length; i++){
-				$("#task-table").append("<%= j render partial: 'projects/task' %>");
+				if (i != 0){
+					$("#task-table").append("<%= j render partial: 'projects/task' %>");
+					console.log(typeof results[i])
+					$(".taskName").last().text(results[i]["role"])
+				}
 			}
 		});		
 	}
