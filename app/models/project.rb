@@ -6,7 +6,7 @@ class Project < ApplicationRecord
 	def add_task(params, proj)
 		count = params[:number].to_i
 		count.times do
-			@task = Task.create!(:project_id => params[:project_id], :role => params[:role], :details => params[:details], :user_id => proj.users.first.id, :filled => false, :admin => false)
+			@task = Task.create!(:project_id => params[:project_id], :role => params[:role], :details => params[:details], :user_id => proj.users.first.id, :filled => false, :admin => false, :username => User.find(proj.users.first.id).name)
 			@task.save
 		end
 	end
@@ -14,7 +14,7 @@ class Project < ApplicationRecord
 		params[:project][:tasks].each do |key, task|
 			count = task[:number].to_i
 			count.times do
-				@task = Task.create!(:project_id => self.id, :role => task[:role], :details => task[:details], :user_id => task[:user_id].to_i, :filled => false, :admin => false)
+				@task = Task.create!(:project_id => self.id, :role => task[:role], :details => task[:details], :user_id => task[:user_id].to_i, :filled => false, :admin => false, :username => User.find(task[:user_id].to_i).name)
 				@task.save
 			end
 		end

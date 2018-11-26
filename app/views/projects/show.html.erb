@@ -9,11 +9,16 @@
 </div>
 
 <p id="loc">hi</p>
-<button id='load-tasks' onclick="loadTasks()">Show Tasks</button>
+<button id='load-tasks' hidden onclick="loadTasks()">Show Tasks</button>
 <p val=[] id="x"></p>
 
 
 <script>
+	let current_id
+	$.get("/users/getcurrentuser", function( data ) {
+		current_id = data["id"]	
+		$("#load-tasks").show()
+	})					
 	function loadTasks() {
 		$("#load-tasks").hide()
 		let results = []
@@ -30,20 +35,8 @@
 
 				if (results[i]["admin"] != true){
 					$("#task-table").append("<%= j render partial: 'projects/task' %>");
-					console.log(results[i])
 					$(".taskName").last().text(results[i]["role"])
-					var user_id =""
-					var username =""
-					var current_id =""
-					$.get("/users/getcurrentuser", function( data ) {
-						console.log(data)
-						current_id = data["id"]	
-					})					
-					$.get( "/users/" + results[i]["user_id"] + ".json", function( data ) {
-						console.log(data)
-						user_id = data["id"]
-						username = data["name"]
-					})
+					console.log(current_id)
 					if (results[i]["user_id"] != current_id && results[i]["filled"] === true){
 						$(".creator").last().text(username)
 						$(".actionButton").last().text("N/A")
@@ -56,7 +49,9 @@
 						$(".creator").last().text("Empty!")
 						$(".actionButton").last().append("<h3><button class='button-green'>Pick Up Task</button></h3>")
 					}
+					if (current_id === results[0]["user_id"]){
 						$(".delete").last().append("<h3><button class='button-red'>Delete</button></h3>")
+					}
 				}
 			}
 		});		
