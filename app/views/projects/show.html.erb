@@ -34,7 +34,7 @@
 					$(".taskName").last().text(results[i]["role"])
 					console.log(current_id)
 					if (results[i]["user_id"] != current_id && results[i]["filled"] === true){
-						$(".creator").last().text(username)
+						$(".creator").last().text(results[i]["username"])
 						$(".actionButton").last().text("N/A")
 					}
 					else if (results[i]["user_id"] == current_id && results[i]["filled"] === true){
@@ -43,7 +43,7 @@
 					}
 					else{
 						$(".creator").last().text("Empty!")
-						$(".actionButton").last().append("<h3><button class='button-green'>Pick Up Task</button></h3>")
+						$(".actionButton").last().append("<h3><a href='/projects/"+project_id+"/tasks/" +results[i]["id"]+ "/edit'><button class='button-green'>Pick Up Task</button></h3>")
 					}
 					if (current_id === results[0]["user_id"]){
 						$(".delete").last().append("<h3><button class='button-red'>Delete</button></h3>")
