@@ -7,16 +7,12 @@
 	<h3><a data-confirm="You sure you want to delete this project?" rel="nofollow" data-method="delete" href='/projects/<%="#{@project.id}"%>'><button class='button-red'>Delete Project</button></a></h3>
 </div>
 
-<button id='load-tasks' hidden onclick="loadTasks()">Show Tasks</button>
+<button id='loads-current' class='loads-current-user' hidden onclick="loadTasks()">Show Tasks</button>
 
 <script>
-	let current_id
-	$.get("/users/getcurrentuser", function( data ) {
-		current_id = data["id"]	
-		$("#load-tasks").show()
-	})					
+					
 	function loadTasks() {
-		$("#load-tasks").hide()
+		$(".loads-current-user").hide()
 		let results = []
 		$("#headers").show()
 		var arr = window.location.toString().split('/')
@@ -26,25 +22,12 @@
 			  results.push(el)
 			})
 			var i = 0
-
 			for (i = 0; i < results.length; i++){
-
 				if (results[i]["admin"] != true){
+					var task = {}
+					task = new Task(results[i]["filled"], results[i]["admin"], results[i]["username"], results[i]["user_id"], results[i]["role"], project_id)
 					$("#task-table").append("<%= j render partial: 'projects/task' %>");
-					$(".taskName").last().text(results[i]["role"])
-					console.log(current_id)
-					if (results[i]["user_id"] != current_id && results[i]["filled"] === true){
-						$(".creator").last().text(results[i]["username"])
-						$(".actionButton").last().text("N/A")
-					}
-					else if (results[i]["user_id"] == current_id && results[i]["filled"] === true){
-						$(".creator").last().text("You!")
-						$(".actionButton").last().append("<h3><button class='button-red'>Drop Task</button></h3>")
-					}
-					else{
-						$(".creator").last().text("Empty!")
-						$(".actionButton").last().append("<h3><a href='/projects/"+project_id+"/tasks/" +results[i]["id"]+ "/edit'><button class='button-green'>Pick Up Task</button></h3>")
-					}
+					task.setInformation()
 					if (current_id === results[0]["user_id"]){
 						$(".delete").last().append("<h3><button class='button-red'>Delete</button></h3>")
 					}
