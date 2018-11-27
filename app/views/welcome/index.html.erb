@@ -48,8 +48,8 @@
 			var i = 0
 			for (i = 0; i < data.length; i++){
 				$("#all-projects-box").append("<div id = mini-all-projects-box"+ i +"></div")
-				$("#mini-all-projects-box"+ i).append("<button id = 'all-proj-button"+ i +"' class='loads-current-user button-green'  onclick = 'loadProjectTasks("+data[i]['id']+","+ i +")'>"+ data[i]['name'] +"</button>")
-
+				$("#mini-all-projects-box"+ i).append("<button id = 'all-proj-button"+ i +"' class='loads-current-user button-green')>"+ data[i]['name'] +"</button>")
+				loadProjectTasks(data[i]['id'], i)
 
 			}
 			$("#all-projects").prop("disabled",true);		
