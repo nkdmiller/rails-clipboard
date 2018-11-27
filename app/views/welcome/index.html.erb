@@ -1,15 +1,15 @@
 <div class="home-box">
+	<h1>My Projects!</h1>
+		<%@projects.each do |proj|%>
+			<h3><a href='/projects/<%="#{proj.id}"%>'><button class='button-green'><%="#{proj.name}"%></button></a></h3>
+		<%end%>
+</div>
+<div class="home-box">
 	<h1><button onclick="loadMyTasks()" class='button-green' class = 'loads-current-user' id = 'my-tasks'>My Tasks!</button></h1>
 	<%= render partial: "projects/table", locals: {delete_privelage: true} %>
 </div>
-<div class="home-box">
-	<h1>My Projects!</h1>
-		<%@projects.each do |proj|%>
-			<h3><a href='/projects/<%="#{proj.id}"%>'><button class='button-green' id = 'all-projects'><%="#{proj.name}"%></button></a></h3>
-		<%end%>
-</div>
 <div class="home-box" id= "all-projects-box">
-	<h1><button onclick="loadAllProjects()" class='button-green' class = 'loads-current-user' id = 'my-tasks'>Current Projects!</button></h1>
+	<h1><button onclick="loadAllProjects()" class='button-green' class = 'loads-current-user' id = 'all-projects'>Current Projects!</button></h1>
 
 </div>
 
@@ -44,34 +44,33 @@
 	}
 	function loadAllProjects() {
 		$.get( "/projects.json", function( data ) {
-			console.log(data)
+
 			var i = 0
 			for (i = 0; i < data.length; i++){
-				$("#all-projects-box").append("<button id='loads-current' class='loads-current-user' hidden onclick="+loadProjectTasks(new Project(data[i]["name"], data[i]["created_at"],data[i]["id"]), i)+">"+ data[i]["name"] +"</button>")
-				$("#all-projects-box").append("<table id = 'task-table' style='width:30%'><tr class='headers' id =" + i + " hidden><th>Task</th><th>User</th> <th>Action</th></tr></table>")
+				$("#all-projects-box").append("<div id = mini-all-projects-box"+ i +"></div")
+				$("#mini-all-projects-box"+ i).append("<button id = 'all-proj-button"+ i +"' class='loads-current-user button-green'  onclick = 'loadProjectTasks("+data[i]['id']+","+ i +")'>"+ data[i]['name'] +"</button>")
+
+
 			}
-			$("#my-tasks").prop("disabled",true);		
+			$("#all-projects").prop("disabled",true);		
 		})
 	}
-	function loadProjectTasks(project, i){
-		$.get( "/projects/" + project.id + ".json", function( data ) {
+	function loadProjectTasks(i,boxNumber){
+		$("#mini-all-projects-box"+ boxNumber).append("<table id = 'task-table" + i + "' style='width:30%'><tr class='headers' id = header" + i + "><th>Task</th><th>User</th> <th>Action</th></tr></table>")
+		$("#task-table"+ i).append("<tr><td class='taskName"+i+"'></td><td class='creator"+i+"'></td><td class='actionButton"+i+"'></td></th></tr>")
+		$.get( "/projects/" + i + ".json", function( data ) {
 			let results = []
 			data["tasks"].forEach(function(el) {
 			  results.push(el)
 			})
-			var i = 0
-			for (i = 0; i < results.length; i++){
-				if (results[i]["admin"] != true){
+			var a = 0
+			for (a = 0; a < results.length; a++){
+				if (results[a]["admin"] != true){
 					var task = {}
-					task = new Task(results[i]["filled"], results[i]["admin"], results[i]["username"], results[i]["user_id"], results[i]["role"], results[i]["project_id"], results[i]["id"])
-					$("#task-table").append("<%= j render partial: 'projects/task' %>");
-					task.setInformation()
-					if (current_id === results[0]["user_id"]){
-						$(".delete").last().append("<h3><button class='button-red'>Delete</button></h3>")
-					}
-					else {
-						$(".delete").last().append("N/A")
-					}
+					task = new Task(results[a]["filled"], results[a]["admin"], results[a]["username"], results[a]["user_id"], results[a]["role"], results[a]["project_id"], results[a]["id"])
+					$("#task-table"+i).append("	<tr><td class='taskName"+a+" task-table"+i+"'></td><td class='creator"+a+" task-table"+i+"'></td><td class='actionButton"+a+" task-table"+i+"'></td></tr>");
+					var find = "#"+ a
+					task.setInformationForWelcome(i,a)
 				}
 			}
 		});				
