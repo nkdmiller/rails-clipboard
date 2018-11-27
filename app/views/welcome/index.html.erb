@@ -6,7 +6,7 @@
 </div>
 <div class="home-box">
 	<h1><button onclick="loadMyTasks()" class='big-button-green' class = 'loads-current-user' id = 'my-tasks'>My Tasks!</button></h1>
-	<%= render partial: "projects/table", locals: {delete_privelage: true} %>
+	<%= render partial: "projects/table", locals: {delete_privelage: false} %>
 </div>
 <div class="home-box" id= "all-projects-box">
 	<h1><button onclick="loadAllProjects()" class='big-button-green' class = 'loads-current-user' id = 'all-projects'>Current Projects!</button></h1>
@@ -31,12 +31,6 @@
 					task = new Task(data[i]["filled"], data[i]["admin"], data[i]["username"], data[i]["user_id"], data[i]["role"], data[i]["project_id"], data[i]["id"])
 					$("#task-table").append("<%= j render partial: 'projects/task' %>");
 					task.setInformation()
-					if (current_id === data[0]["user_id"]){
-						$(".delete").last().append("<h3><button class='button-red'>Delete</button></h3>")
-					}
-					else {
-						$(".delete").last().append("N/A")
-					}
 				}
 			}
 		$("#my-tasks").prop("disabled",true);
