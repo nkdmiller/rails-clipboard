@@ -31,3 +31,8 @@ Task.prototype.setInformation = function() {
 		$(".actionButton").last().append("<h3><a href='/projects/"+this.project_id+"/tasks/" +this.id+ "/edit'><button class='button-green'>Pick Up Task</button></h3>")  		
    	}
 };
+function Project(name, created_at, id){
+	this.name = name;
+	this.created_at = created_at;
+	this.id = id
+}
