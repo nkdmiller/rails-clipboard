@@ -5,11 +5,11 @@
 		<%end%>
 </div>
 <div class="home-box">
-	<h1><button onclick="loadMyTasks()" class='button-green' class = 'loads-current-user' id = 'my-tasks'>My Tasks!</button></h1>
+	<h1><button onclick="loadMyTasks()" class='big-button-green' class = 'loads-current-user' id = 'my-tasks'>My Tasks!</button></h1>
 	<%= render partial: "projects/table", locals: {delete_privelage: true} %>
 </div>
 <div class="home-box" id= "all-projects-box">
-	<h1><button onclick="loadAllProjects()" class='button-green' class = 'loads-current-user' id = 'all-projects'>Current Projects!</button></h1>
+	<h1><button onclick="loadAllProjects()" class='big-button-green' class = 'loads-current-user' id = 'all-projects'>Current Projects!</button></h1>
 
 </div>
 
