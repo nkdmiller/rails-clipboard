@@ -10,7 +10,11 @@
 <button id='loads-current' class='loads-current-user' hidden onclick="loadTasks()">Show Tasks</button>
 
 <script>
-					
+	$( document ).ready(function() {
+		if (current_id){
+			$(".loads-current-user").show()
+		}
+	});		
 	function loadTasks() {
 		$(".loads-current-user").hide()
 		let results = []
@@ -25,11 +29,14 @@
 			for (i = 0; i < results.length; i++){
 				if (results[i]["admin"] != true){
 					var task = {}
-					task = new Task(results[i]["filled"], results[i]["admin"], results[i]["username"], results[i]["user_id"], results[i]["role"], project_id)
+					task = new Task(results[i]["filled"], results[i]["admin"], results[i]["username"], results[i]["user_id"], results[i]["role"], project_id, results[i]["id"])
 					$("#task-table").append("<%= j render partial: 'projects/task' %>");
 					task.setInformation()
 					if (current_id === results[0]["user_id"]){
 						$(".delete").last().append("<h3><button class='button-red'>Delete</button></h3>")
+					}
+					else {
+						$(".delete").last().append("N/A")
 					}
 				}
 			}

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
   get 'tasks/pickedup'
+  get 'tasks/index'
   post 'sessions/create'
   get 'users/getcurrentuser'
   get 'auth/github/callback' => 'sessions#creategithub'

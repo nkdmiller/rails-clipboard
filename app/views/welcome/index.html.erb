@@ -1,10 +1,6 @@
 <div class="home-box">
-	<h1>My Tasks!</h1>
-		<%@tasks.each do |task|%>
-			<% if task.filled == true%>
-				<h3><%="#{task.role}"%></h3>
-			<%end%>
-		<%end%>
+	<h1><button onclick="loadMyTasks()" class='button-green' class = 'loads-current-user' id = 'my-tasks'>My Tasks!</button></h1>
+	<%= render partial: "projects/table", locals: {delete_privelage: true} %>
 </div>
 <div class="home-box">
 	<h1>My Projects!</h1>
@@ -15,6 +11,37 @@
 <div class="home-box">
 	<h1>Current Projects!</h1>
 		<%Project.all.each do |proj|%>
-			<%= render partial: "projects/table", locals: {proj: proj, delete_privelage: false} %>
+			<h3><a href='/projects/<%="#{proj.id}"%>'><button class='button-green'><%="#{proj.name}"%></button></a></h3>
 		<%end%>
 </div>
+
+<script>
+	$( document ).ready(function() {
+		if (current_id == true){
+			$(".loads-current-user").show()
+		}
+	});		
+	function loadMyTasks() {
+		$("#headers").show()
+		$.get( "/tasks/index.json", function( data ) {
+			console.log(data)
+			var i = 0
+			for (i = 0; i < data.length; i++){
+				console.log(data[i])
+				if (data[i]["admin"] != true){
+					var task = {}
+					task = new Task(data[i]["filled"], data[i]["admin"], data[i]["username"], data[i]["user_id"], data[i]["role"], data[i]["project_id"], data[i]["id"])
+					$("#task-table").append("<%= j render partial: 'projects/task' %>");
+					task.setInformation()
+					if (current_id === data[0]["user_id"]){
+						$(".delete").last().append("<h3><button class='button-red'>Delete</button></h3>")
+					}
+					else {
+						$(".delete").last().append("N/A")
+					}
+				}
+			}
+		$("#my-tasks").prop("disabled",true);
+		})
+	}
+</script>
