@@ -1,0 +1,16 @@
+  <form hidden action="/projects/addtask" accept-charset="UTF-8" method="post">
+    <h2>New Task</h2>
+    <label for="project_tasks_Role">Role</label><br>
+    <input required="required" type="text" name="[task][role]" id="project_tasks_[0][role]" /><br>
+ 
+    <label for="project_tasks_Description">Description</label><br>
+    <textarea required="required" name="[task][details]" id="project_tasks_[0][details]">
+</textarea><br>
+ 
+    <label for="project_tasks_Number of Positions for this Task">Number of positions for this task</label><br>
+    <input type="number" min="1" value="1" name="[task][number]" id="project_tasks_[0][number]" /><br>
+    <input type=hidden id=projectId name=[task][project_id] value = <%=project_id%> >
+    <input type=hidden id=noredirect name=[noredirect] value = true>
+    <br>
+    <input type="submit" name="commit" value="Save Task" data-disable-with="Save Task" />
+  </form>

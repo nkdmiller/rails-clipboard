@@ -55,3 +55,6 @@ function Project(name, created_at, id){
 	this.created_at = created_at;
 	this.id = id
 }
+Project.prototype.listParticipants = function () {
+	
+}

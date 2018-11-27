@@ -3,11 +3,13 @@
 	<button class="button-green" id="ne">Next Project</button>
 	<h1><%=@project.name%></h1>
 	<%= render partial: "projects/table", locals: {delete_privelage: true} %>
-	<h3><a href='/projects/<%="#{@project.id}"%>/tasks/new'><button class='button-green'>Add Task</button></a></h3><br>
+	<button id='load-task-button' class='loads-current-user big-button-green' hidden onclick="loadTasks()">Show Tasks</button>
+	<div id="task-form">
+	<h3><button class='loads-current-user button-green' id = "add-task-button" hidden onclick="addTask()">Add Task</button></h3>
+	<%= render partial: 'projects/newtask', locals: {project_id:  @project.id } %>
+	</div>
 	<h3><a data-confirm="You sure you want to delete this project?" rel="nofollow" data-method="delete" href='/projects/<%="#{@project.id}"%>'><button class='button-red'>Delete Project</button></a></h3>
 </div>
-
-<button id='loads-current' class='loads-current-user' hidden onclick="loadTasks()">Show Tasks</button>
 
 <script>
 	$( document ).ready(function() {
@@ -16,7 +18,7 @@
 		}
 	});		
 	function loadTasks() {
-		$(".loads-current-user").hide()
+		$("#load-task-button").hide()
 		let results = []
 		$("#headers").show()
 		var arr = window.location.toString().split('/')
@@ -33,7 +35,7 @@
 					$("#task-table").append("<%= j render partial: 'projects/task' %>");
 					task.setInformation()
 					if (current_id === results[0]["user_id"]){
-						$(".delete").last().append("<h3><button class='button-red'>Delete</button></h3>")
+						$(".delete").last().append("<h3><a data-confirm='You sure you want to delete this task?' rel='nofollow' data-method='delete' href='/projects/"+project_id+"/tasks/"+results[i]["id"]+"'><button class='button-red'>Delete</button></a></h3>")
 					}
 					else {
 						$(".delete").last().append("N/A")
@@ -41,5 +43,21 @@
 				}
 			}
 		});		
+	}
+	function addTask() {
+		event.preventDefault();
+		$('form').show()
+		$("#task-form").append()
+		$(function () {
+		  $('form').submit(function(event) {
+		    event.preventDefault();
+		    var values = $(this).serialize();
+		    var posting = $.post('/projects/addtask', values);
+		    posting.done(function(data) {
+		    	$('form').hide()
+		    	$('#add-task-button').show()
+		    });
+		  });
+		});
 	}
 </script>

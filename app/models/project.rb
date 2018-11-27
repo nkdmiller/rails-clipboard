@@ -4,6 +4,7 @@ class Project < ApplicationRecord
 	accepts_nested_attributes_for :tasks
 	validates :name, length: { minimum: 2 }
 	def add_task(params, proj)
+		puts params
 		count = params[:number].to_i
 		count.times do
 			@task = Task.create!(:project_id => params[:project_id], :role => params[:role], :details => params[:details], :user_id => proj.users.first.id, :filled => false, :admin => false, :username => User.find(proj.users.first.id).name)

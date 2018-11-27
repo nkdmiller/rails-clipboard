@@ -18,11 +18,14 @@ class ProjectsController < ApplicationController
   def addtask
   	@project = Project.find(params[:task][:project_id])
   	@project.add_task(task_params, @project)
-  	redirect_to "/projects/#{@project.id}"
+    if !params[:noredirect]
+  	   redirect_to "/projects/#{@project.id}"
+    end
   end
 
   def show
   	@project = Project.find(params[:id])
+    @task = Task.new
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @project.to_json(only: [:id, :name],
