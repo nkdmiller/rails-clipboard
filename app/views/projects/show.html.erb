@@ -1,6 +1,5 @@
 
 <div class="home-box">
-	<button class="button-green" id="ne">Next Project</button>
 	<h1><%=@project.name%></h1>
 	<%= render partial: "projects/table", locals: {delete_privelage: true} %>
 	<button id='load-task-button' class='loads-current-user big-button-green' hidden onclick="loadTasks()">Show Tasks</button>
@@ -56,6 +55,8 @@
 		    posting.done(function(data) {
 		    	$('form').hide()
 		    	$('#add-task-button').show()
+		    	$("#task-table").empty()
+		    	loadTasks()
 		    });
 		  });
 		});
