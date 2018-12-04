@@ -10,6 +10,7 @@ class Project < ApplicationRecord
 			@task = Task.create!(:project_id => params[:project_id], :role => params[:role], :details => params[:details], :user_id => proj.users.first.id, :filled => false, :admin => false, :username => User.find(proj.users.first.id).name)
 			@task.save
 		end
+		Task.last
 	end
 	def create_project_tasks(params)
 		params[:project][:tasks].each do |key, task|

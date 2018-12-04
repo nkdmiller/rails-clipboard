@@ -21,10 +21,8 @@ class TasksController < ApplicationController
         @tasks << task
       end
     end
-    respond_to do |format|
-      
-      format.json { render json: @tasks.to_json}
-    end
+
+    render json: @tasks.to_json
   end
   def new
   	@project = Project.find(params[:project_id])

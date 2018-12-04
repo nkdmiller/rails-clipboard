@@ -53,10 +53,17 @@
 		    var values = $(this).serialize();
 		    var posting = $.post('/projects/addtask', values);
 		    posting.done(function(data) {
+		    	task = new Task(data["filled"], data["admin"], data["username"], data["user_id"], data["role"], data["project_id"], data["id"])
+		    	$("#task-table").append("<%= j render partial: 'projects/task' %>");
+		    	task.setInformation()
 		    	$('form').hide()
 		    	$('#add-task-button').show()
-		    	$("#task-table").empty()
-		    	loadTasks()
+				if (current_id === data["user_id"]){
+					$(".delete").last().append("<h3><a data-confirm='You sure you want to delete this task?' rel='nofollow' data-method='delete' href='/projects/"+data.project_id+"/tasks/"+data["id"]+"'><button class='button-red'>Delete</button></a></h3>")
+				}
+				else {
+					$(".delete").last().append("N/A")
+				}
 		    });
 		  });
 		});

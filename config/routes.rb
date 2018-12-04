@@ -1,19 +1,24 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+  get 'welcome/index'
 
   get 'sessions/new'
-  get 'tasks/pickedup'
-  get 'tasks/index'
   post 'sessions/create'
-  get 'users/getcurrentuser'
+  get 'sessions/delete'  
+
   get 'auth/github/callback' => 'sessions#creategithub'
-  get 'sessions/delete'
+  
   resources :users, only: [:new, :create, :edit, :update, :show]
+  get 'users/getcurrentuser'
+
+  resources :tasks, only: [:index]
+  get 'tasks/pickedup'
+  post 'tasks/register'
+
   resources :projects, only:[:new, :create, :show, :index, :edit, :destroy]
   post 'projects/addtask'
-	root 'welcome#index'
-  get 'welcome/index'
   resources :projects, only: [:show] do
   	resources :tasks, only: [:edit, :new, :create, :destroy]
   end
-  post 'tasks/register'
+  
 end

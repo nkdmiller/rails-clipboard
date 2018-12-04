@@ -14,14 +14,16 @@
 </div>
 
 <script>
+
 	$( document ).ready(function() {
 		if (current_id == true){
 			$(".loads-current-user").show()
 		}
 	});		
+
 	function loadMyTasks() {
 		$("#headers").show()
-		$.get( "/tasks/index.json", function( data ) {
+		$.get( "/tasks.json", function( data ) {
 			console.log(data)
 			var i = 0
 			for (i = 0; i < data.length; i++){
@@ -36,6 +38,7 @@
 		$("#my-tasks").prop("disabled",true);
 		})
 	}
+
 	function loadAllProjects() {
 		$.get( "/projects.json", function( data ) {
 
@@ -49,6 +52,7 @@
 			$("#all-projects").prop("disabled",true);		
 		})
 	}
+	
 	function loadProjectTasks(i,boxNumber){
 		$("#mini-all-projects-box"+ boxNumber).append("<table id = 'task-table" + i + "' style='width:30%'><tr class='headers' id = header" + i + "><th>Task</th><th>User</th> <th>Action</th></tr></table>")
 		$("#task-table"+ i).append("<tr><td class='taskName"+i+"'></td><td class='creator"+i+"'></td><td class='actionButton"+i+"'></td></th></tr>")
