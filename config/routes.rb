@@ -7,16 +7,16 @@ Rails.application.routes.draw do
   get 'sessions/delete'  
 
   get 'auth/github/callback' => 'sessions#creategithub'
-  
+  get 'users/getcurrentuser'  
   resources :users, only: [:new, :create, :edit, :update, :show]
-  get 'users/getcurrentuser'
-
-  resources :tasks, only: [:index]
+  
   get 'tasks/pickedup'
   post 'tasks/register'
+  resources :tasks, only: [:index]
 
-  resources :projects, only:[:new, :create, :show, :index, :edit, :destroy]
   post 'projects/addtask'
+  resources :projects, only:[:new, :create, :show, :index, :edit, :destroy]
+
   resources :projects, only: [:show] do
   	resources :tasks, only: [:edit, :new, :create, :destroy]
   end
