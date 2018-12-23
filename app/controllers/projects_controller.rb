@@ -12,7 +12,6 @@ class ProjectsController < ApplicationController
     else
       redirect_to "/projects/new"
     end
-
   end
 
   def addtask
