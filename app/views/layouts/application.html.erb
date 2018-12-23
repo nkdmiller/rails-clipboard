@@ -16,6 +16,8 @@
         <% @user = current_user %>
         <%=" #{@user.name}"%>
         <br>
+        <a href="/">Home</a>
+        <br>
         <a href="/sessions/delete">Logout</a>
         <br>
         <a href="/users/<%="#{@user.id}/edit"%>">Edit Account</a>
@@ -27,6 +29,7 @@
       <%end%>
       </span>
   </nav>
+
   </head>
 
   <body>

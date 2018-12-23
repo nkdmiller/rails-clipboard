@@ -8,6 +8,7 @@ gem 'rails', '~> 5.2.1'
 # Use sqlite3 as the database for Active Record
 # For some reason this gem would only behave with the name 'sqlite3-ruby' despite developer's warning that 'sqlite3' is sufficent
 gem 'sqlite3'
+gem "rack", ">= 2.0.6"
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -31,7 +32,8 @@ gem 'dotenv-rails'
 
 gem 'omniauth'
 gem 'omniauth-github'
-
+gem 'active_model_serializers'
+gem 'jquery-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

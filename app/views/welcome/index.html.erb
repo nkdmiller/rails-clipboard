@@ -1,20 +1,76 @@
 <div class="home-box">
-	<h1>My Tasks!</h1>
-		<%@tasks.each do |task|%>
-			<% if task.filled == true%>
-				<h3><%="#{task.role}"%></h3>
-			<%end%>
-		<%end%>
-</div>
-<div class="home-box">
 	<h1>My Projects!</h1>
 		<%@projects.each do |proj|%>
 			<h3><a href='/projects/<%="#{proj.id}"%>'><button class='button-green'><%="#{proj.name}"%></button></a></h3>
 		<%end%>
 </div>
 <div class="home-box">
-	<h1>Current Projects!</h1>
-		<%Project.all.each do |proj|%>
-			<%= render partial: "projects/table", locals: {proj: proj, delete_privelage: false} %>
-		<%end%>
+	<h1><button onclick="loadMyTasks()" class='big-button-green' class = 'loads-current-user' id = 'my-tasks'>My Tasks!</button></h1>
+	<%= render partial: "projects/table", locals: {delete_privelage: false} %>
 </div>
+<div class="home-box" id= "all-projects-box">
+	<h1><button onclick="loadAllProjects()" class='big-button-green' class = 'loads-current-user' id = 'all-projects'>Current Projects!</button></h1>
+
+</div>
+
+<script>
+
+	$( document ).ready(function() {
+		if (current_id == true){
+			$(".loads-current-user").show()
+		}
+	});		
+
+	function loadMyTasks() {
+		$("#headers").show()
+		$.get( "/tasks.json", function( data ) {
+			console.log(data)
+			var i = 0
+			for (i = 0; i < data.length; i++){
+				console.log(data[i])
+				if (data[i]["admin"] != true){
+					var task = {}
+					task = new Task(data[i]["filled"], data[i]["admin"], data[i]["username"], data[i]["user_id"], data[i]["role"], data[i]["project_id"], data[i]["id"])
+					$("#task-table").append("<%= j render partial: 'projects/task' %>");
+					task.setInformation()
+				}
+			}
+		$("#my-tasks").prop("disabled",true);
+		})
+	}
+
+	function loadAllProjects() {
+		$.get( "/projects.json", function( data ) {
+
+			var i = 0
+			for (i = 0; i < data.length; i++){
+				$("#all-projects-box").append("<div id = mini-all-projects-box"+ i +"></div")
+				$("#mini-all-projects-box"+ i).append("<h2 class='loads-current-user project-title')>"+ data[i]['name'] +"</h2>")
+				loadProjectTasks(data[i]['id'], i)
+
+			}
+			$("#all-projects").prop("disabled",true);		
+		})
+	}
+	
+	function loadProjectTasks(i,boxNumber){
+		$("#mini-all-projects-box"+ boxNumber).append("<table id = 'task-table" + i + "' style='width:30%'><tr class='headers' id = header" + i + "><th>Task</th><th>User</th> <th>Action</th></tr></table>")
+		$("#task-table"+ i).append("<tr><td class='taskName"+i+"'></td><td class='creator"+i+"'></td><td class='actionButton"+i+"'></td></th></tr>")
+		$.get( "/projects/" + i + ".json", function( data ) {
+			let results = []
+			data["tasks"].forEach(function(el) {
+			  results.push(el)
+			})
+			var a = 0
+			for (a = 0; a < results.length; a++){
+				if (results[a]["admin"] != true){
+					var task = {}
+					task = new Task(results[a]["filled"], results[a]["admin"], results[a]["username"], results[a]["user_id"], results[a]["role"], results[a]["project_id"], results[a]["id"])
+					$("#task-table"+i).append("	<tr><td class='taskName"+a+" task-table"+i+"'></td><td class='creator"+a+" task-table"+i+"'></td><td class='actionButton"+a+" task-table"+i+"'></td></tr>");
+					var find = "#"+ a
+					task.setInformationForWelcome(i,a)
+				}
+			}
+		});				
+	}
+</script>

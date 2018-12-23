@@ -55,12 +55,25 @@ nav{
 .cap{
 	font-size: 1.5em;
 }
+.project-title{
+	font-size: 1.5em;
+}
 .button-green{
 	background-color: silver; 
     color: black; 
     border: 2px solid #4CAF50;
 }
+.big-button-green{
+	background-color: silver; 
+    color: black; 
+    border: 2px solid #4CAF50;
+    font-size: 1em;
+}
 .button-green:hover{
+    background-color: #4CAF50;
+    color: white;
+}
+.big-button-green:hover{
     background-color: #4CAF50;
     color: white;
 }

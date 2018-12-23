@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
       u.password = SecureRandom.base64(10)
       u.email = "github@login"
     end
-    session[:user_id] = @user.id
+    log_in(@user)
  
     redirect_to '/welcome/index'
   end  	
